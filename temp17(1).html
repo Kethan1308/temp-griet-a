@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            border-radius: 10px;
+        }
+        .container h1{
+            color: aliceblue;
+            border: 3px solid whitesmoke;
+            border-radius: 15px;
+            margin-left: 125px;
+            margin-right: 125px;
+        }
+        .container img{
+            border: 5px solid rgb(128, 126, 113);
+            border-radius: 15px;
+        }
+        .name{
+            border-radius: 15px;
+            border-color: whitesmoke;
+        }
+        .email{
+            border-radius: 15px;
+            border-color: whitesmoke;
+        }
+        .password{
+            border-radius: 15px;
+            border-color: whitesmoke;
+        }
+        .dob{
+            border-radius: 15px;
+            border-color: whitesmoke;
+        }
+        .box{
+            border: 2px solid #555;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #535353;
+        }
+        button{
+            border-radius: 10px;
+            border-color: beige;
+            color: aliceblue;
+            background-color: black;
+        }
+        Account{
+            color: aliceblue;
+        }
+    </style>
+    <script>
+    let users = [];
+    function chkUser(){
+        let email=document.getElementById("email").value
+        let password=document.getElementById("password").value
+        let length=users.length
+        for(let i=0;i<length;i++)
+        {
+            if(users[i].email==email && users[i].password==password){
+                root.innerHTML=`
+                <center><h1>Login Successful</h1>
+                <div>Welcome</div>
+                <button onclick="showLogin()">Logout</button></center>`
+            }else if(users[i].email==email){
+                root.innerHTML=`
+                <center><h1>Login Failed</h1>
+                <p>Invalid Password<p>
+                <button onclick="showLogin()">Login Again</button></center>`
+            }else{
+                root.innerHTML=`
+                <center><h1>Login Failed</h1>
+                <p>Invalid Email and Password<p>
+                <button onclick="showLogin()">Back to Login</button></center>`
+            }
+        }
+    }
+    function showLogin(){
+        root.innerHTML=`
+         <div class="container">
+            <div class="box">
+        <center><img src="assets/images/griet.jpeg" class="img">
+        <h1>Login Form</h1>
+         <p><input type="email" id="email" placeholder="User's Email:" class="email"></p>
+        <p><input type="password" id="password" placeholder="Password:" class="password"></p>
+        <button onclick="chkUser()">Login</button>
+        <button onclick="showForm()">Create Account</button></center>
+         </div>
+            </div>`
+    }
+    function showForm(){
+        root.innerHTML=`
+            <div class="container">
+            <div class="box">
+            <center><img src="assets/images/griet.jpeg" class="img">
+            <h1>Student Form</h1>
+            <p><input type="text" id="name" placeholder="Enter Name:" class="name"></p>
+            <p><input type="email" id="email" placeholder="Email:" class="email"></p>
+            <p><input type="password" id="password" placeholder="Password:" class="password"></p>
+            <p> <input type="date" id="dob" placeholder="Date Of Birth:" class="dob"></p>
+            <button onclick="addUser()">Register</button>
+            <button onclick="showLogin()" class="account">Already Have an Account ?</button>
+             <div id="data"></div></center>
+            </div>
+            </div>`
+    }
+    function deleteUser(index) {
+      users.splice(index,1);
+      showUsers()
+    }
+    function showUsers() {
+      let length = users.length;
+      let str = "";
+      for (let i = 0; i < length; i++) {
+        str += `<div>
+                  ${users[i].name}-
+                  ${users[i].email}-
+                  ${users[i].password}-
+                  ${users[i].dob}-
+                  <button onclick='deleteUser(${i})'>Delete</button>
+                  </div>`;
+      }
+      data.innerHTML = str;
+    }
+
+    function addUser() {
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
+      let dob = document.getElementById("dob").value;
+      let user = {
+        name: name,
+        email: email,
+        password: password,
+        dob: dob,
+      };
+      users.push(user);
+      showUsers()
+      showLogin()
+      //data.innerHTML = `${name}, ${email}, ${password}, ${dob}`
+    }
+  </script>
+</head>
+<body onload="showForm()">
+    <!-- <div class="container">
+        <div class="box">
+            <img src="assets/images/griet.jpeg" class="img">
+            <h1>Student Form</h1>
+            <p><input type="text" id="name" placeholder="Enter Name:" class="name"></p>
+            <p><input type="email" id="email" placeholder="Email:" class="email"></p>
+            <p><input type="password" id="password" placeholder="Password:" class="password"></p>
+            <p> <input type="date" id="dob" placeholder="Date Of Birth:" class="dob"></p>
+            <button onclick="addUser()">Register</button>
+            <div id="data"></div>
+        </div>
+    </div> -->
+    <div id="root"></div>
+</body>
+</html>
