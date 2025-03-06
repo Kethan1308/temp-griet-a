@@ -12,7 +12,6 @@
       ];
       const cart = {};
       const addToCart = (id) => {
-<<<<<<< HEAD
         const score={};
         cart[id]=1;
         console.log(cart);
@@ -37,52 +36,17 @@
         
         divTotal.innerHTML=`Order Value: ₹${total}/-`;
       }
-=======
-        // const score = {};
-        // score["maths"] = 95;
-        // score["maths"] = score["maths"] + 2
-        // console.log(score);
-        cart[id] = 1;
-        showCart();
-      };
-      const increment = (id) => {
-        cart[id] = cart[id] + 1;
-        showCart();
-      };
-      const decrement = (id) => {
-        cart[id] = cart[id] - 1;
-        cart[id] < 1 && delete cart[id];
-        console.log(cart);
-        showCart();
-      };
-      const showTotal = () => {
-        let total = products.reduce((sum, value) => {
-          return sum + value.price * (cart[value.id] ? cart[value.id] : 0);
-        }, 0);
-
-        divTotal.innerHTML = `Order Value: $${total}`;
-      };
->>>>>>> db534783a1e6346a4eb8775701e286071c43333b
 
       const showCart = () => {
         let str = "";
         products.map((value) => {
           if (cart[value.id]) {
             str += `
-<<<<<<< HEAD
             <li>${value.name}-$${value.price}-<button onclick='decrement(${value.id})'>-</button>${cart[value.id]}<button onclick='increment(${value.id})'>+</button>-${value.price*cart[value.id]}</li>
-=======
-            <li>${value.name}-$${value.price}-<button onclick='decrement(${
-              value.id
-            })'>-</button>${cart[value.id]}<button onclick='increment(${
-              value.id
-            })'>+</button>-$${value.price * cart[value.id]}</li>
->>>>>>> db534783a1e6346a4eb8775701e286071c43333b
             `;
           }
         });
         divCart.innerHTML = str;
-<<<<<<< HEAD
         let count=Object.keys(cart).length
         items.innerHTML=count
         showTotal();
@@ -103,17 +67,6 @@
       }
       const hideCart = () =>{
         divCartBlock.style.display="none"
-=======
-        let count = Object.keys(cart).length;
-        items.innerHTML = count;
-        showTotal();
-      };
-      const displayCart = () => {
-        divCartBlock.style.display = "block"
-      }
-      const hideCart = () => {
-         divCartBlock.style.display = "none"
->>>>>>> db534783a1e6346a4eb8775701e286071c43333b
       }
       const showProducts = () => {
         let str = "";
@@ -128,7 +81,6 @@
   </head>
   <body onload="showProducts()">
     <h1>My Store</h1>
-<<<<<<< HEAD
     <h4><button onclick="displayCart()">Cart:<span id="items"></span></button></h4>
     <!-- <h4 onclick="displayCart()">Cart:<span id="items"></span></h4> -->
     <hr />
@@ -142,18 +94,3 @@
      </div>
   </body>
 </html>
-=======
-    <h4 onclick="displayCart()">Cart:<span id="items"></span></h4>
-    <hr />
-    <h3>Products</h3>
-    <div id="divProducts"></div>
-
-    <div id="divCartBlock" style="display: none">
-      <h3>My Cart</h3>
-      <div id="divCart"></div>
-      <div id="divTotal"></div>
-      <button onclick="hideCart()">Close</button>
-    </div>
-  </body>
-</html>
->>>>>>> db534783a1e6346a4eb8775701e286071c43333b
